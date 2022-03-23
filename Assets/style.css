@@ -3,9 +3,8 @@
   --hue-wrong: 0;
   --hue-correct: 145;
 }
-
+/* body style (errthing in the body ) */
 body {
-  /* --hue: var(--hue-neutral); */
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -14,4 +13,34 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #b4f8c8;
+}
+
+/* main container style  */
+main {
+  max-width: 70%;
+  background-color: #a0e7e5;
+  border-radius: 7px;
+  padding: 18px;
+  box-shadow: 0 0 8px 5px;
+}
+
+/* buttons style  */
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+button {
+  background-color: #fbe7c6;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 10px;
+}
+
+button:hover {
+  color: #fff;
+}
+/* game over display  */
+.hde {
+  display: none;
 }

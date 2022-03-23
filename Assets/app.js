@@ -1,3 +1,12 @@
+// DEPENDECIES  DOM elements
+var containerEl = document.getElementById("#question-container");
+var questionEl = document.getElementById("#question");
+var answerEl = document.getElementById("#answer-btn");
+var controlEl = document.getElementById("#controls");
+var startButtonEl = document.getElementById("#start-button");
+var startButtonEl = document.getElementById("#next-button");
+var startButtonEl = document.getElementById("#submit-button");
+
 // Create variables to store the quiz questions
 
 // Use mouse-click events to start the quiz (start button)
