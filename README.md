@@ -20,3 +20,6 @@ THEN I can save my initials and score
 The following animation demonstrates the application functionality:
 
 Demonstration of the Coding Quiz Challenge.
+
+published at https://moekabba.github.io/code-quiz/
+https://github.com/Moekabba/code-quiz
