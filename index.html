@@ -8,10 +8,30 @@
     <title>quiz-game</title>
   </head>
   <body>
+    <!-- main  container box  -->
     <main class="container">
+      <!-- question container  -->
       <div id="question-container">
         <div id="question">Questions</div>
         <div id="answer-btn" class="btn-grid"></div>
+      </div>
+
+      <!-- game control buttons and timer el  -->
+      <div class="controls"></div>
+      <button id="start-btn" class="start-button"></button>
+      <button id="next-btn" class="next-button"></button>
+      <div>
+        <h4 id="countdown-timer"></h4>
+      </div>
+
+      <!-- displays after game is over  -->
+      <div id="game-over" class="hide">
+        <h3>GAME OVER</h3>
+        <p>Your final score is: <span id="scores"></span></p>
+        <p>
+          Enter your initials: <input type="text" id="initials" />
+          <button id="submit">Submit</button>
+        </p>
       </div>
     </main>
     <script src="Assets/app.js"></script>
