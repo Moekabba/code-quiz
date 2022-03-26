@@ -1,13 +1,19 @@
 // DEPENDECIES  DOM elements
-var containerEl = document.getElementById("#question-container");
-var questionEl = document.getElementById("#question");
-var answerEl = document.getElementById("#answer-btn");
-var controlEl = document.getElementById("#controls");
-var startButtonEl = document.getElementById("#start-btn");
-var nextButtonEl = document.getElementById("#next-btn");
-var submitButtonEl = document.getElementById("#submit-button");
-var countDownEl = document.getElementById("#countdown-timer");
-var choicesEl = document.getElementById("#answer-buttons");
+var containerEl = document.getElementById("question-container");
+var questionEl = document.getElementById("question");
+var answerEl = document.getElementById("answer-btn");
+var controlEl = document.getElementById("controls");
+var startButtonEl = document.getElementById("start-btn");
+var nextButtonEl = document.getElementById("next-btn");
+var submitButtonEl = document.getElementById("submit");
+var countDownEl = document.getElementById("countdown-timer");
+var choicesEl = document.getElementById("answer-btn");
+var gameOverEl = document.getElementById("game-over");
+var scoreEl = document.getElementById("scores");
+var initialEL = document.getElementById("initials").value;
+// tracking current score index
+var currentScore = 0;
+var currentQuestion = 0;
 // Create variables to store the quiz questions
 // objects in array ==>  data
 var questionsArray = [
@@ -34,32 +40,36 @@ var questionsArray = [
   },
   //   add more questions
 ];
+console.log(questionsArray);
 
 //Start Functions
-function startGame() {
+function startGame(event) {
+  event.stopPropagation();
   // display questions when gamestarts
-  //   containerEl.classList.remove("hide");
-  // hide start button while playing
-  //   startButtonEl.classList.add("hide");
+
   // start timer when game starts (create timer function)
+  startTimer();
+  displayQuestions();
 }
-// startGame();
 // Start timer function
 function startTimer() {
   var secondsLeft = 10;
   //   using setInterval method to set time
   var timeInterval = setInterval(function () {
-    countDownEl.innerHTML = "00" + secondsLeft;
+    countDownEl.innerHTML = " 00 " + secondsLeft;
     // Decreament time as player continues to play
+    secondsLeft--;
     if (secondsLeft > 1) {
       countDownEl.textContent = secondsLeft + "seconds left";
       //   Decrement time left
-      secondsLeft--;
     } else if (secondsLeft === 1) {
       // if time left equals to 1, remove s from seonds
       countDownEl.textContent = secondsLeft + "second left";
-    } else {
-      countDownEl.textContent = "";
+    } else if (secondsLeft === 0) {
+      countDownEl.textContent = " ";
+      gameOverEl.style.display = "block";
+      // tracking scores
+      scoreEl.textContent = currentScore;
       // Use `clearInterval()` to stop the timer
       //   console.log(timeInterval);
       clearInterval(timeInterval);
@@ -78,19 +88,61 @@ function startTimer() {
 
 // display questions
 function displayQuestions() {
-  var currentQuestion = 0;
-  questionEl.textContent = questionsArray[currentQuestion];
+  var question = questionsArray[currentQuestion];
+  questionEl.textContent = question.question;
+  choicesEl.innerHTML = "";
+  // get from localStorage
+  // var qArray = localStorage.getItem("questionsArray");
+  // parse this into an object
+  // var qObject = JSON.parse(qArray);
+
+  // understand what's happening here (shows answer to questions )
+  question.choices.forEach((choice) => {
+    console.log(choice);
+
+    // creating a button ele then set it to choice
+    var button = document.createElement("button");
+    button.setAttribute("value", choice.choices);
+    button.setAttribute("class", "choice");
+    button.onclick = answerCheck;
+    button.textContent = choice;
+    choicesEl.appendChild(button);
+  });
 }
+
 function answerCheck() {
-  currentQuestionIndex++;
-  if (currentQuestionIndex === questionsArray.length) {
+  if (this.value !== questionsArray[currentQuestion].answer) {
+    console.log("wrong");
+  } else {
+    console.log("correct");
+    currentScore++;
+  }
+  currentQuestion++;
+  if (currentQuestion === questionsArray.length) {
     console.log("game over");
   } else {
     displayQuestions();
   }
 }
+
+// function answerCheck() {
+//   currentQuestionIndex++;
+//   if (currentQuestionIndex === questionsArray.length) {
+//     console.log("game over");
+//   } else {
+//     displayQuestions();
+//   }
+// }
+
+// creat event and connect to submit button look at loacal storae activity
 // Use mouse-click events to start the quiz (start button)
 // USER INTERACTION
-// startButtonEl.addEventListener("click", startGame);
+submitButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
+  var scoreEnn = { initialss: initialEL, scoree: currentScore };
+  // add to local storage (stringify questionsArray object into a string)
+  localStorage.setItem("questionsArray", JSON.stringify(scoreEnn));
+});
+startButtonEl.addEventListener("click", startGame);
 
 // // Use GitHub Pages to publish the page to the we
