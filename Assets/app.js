@@ -18,14 +18,14 @@ var currentQuestion = 0;
 // objects in array ==>  data
 var questionsArray = [
   {
-    question: "what is Javascript?",
+    question: "What a pop()method in JavaScript is?",
     choices: [
-      "Javascript is a client-side and server-side scrpting language inserted into html",
-      "Javascript is a browser",
+      "pop() method takes the last element off of the given array and returns it",
+      " pop() method is a browser",
     ],
 
     answer:
-      "Javascript is a client-side and server-side scrpting language inserted into html",
+      "pop() method takes the last element off of the given array and returns it",
   },
   {
     question: "what belongs in Javascrip data type?",

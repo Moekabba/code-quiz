@@ -25,7 +25,7 @@ main {
   justify-content: space-around;
   align-items: center;
 }
-button {
+#start-btn {
   background-color: #fbe7c6;
   font-weight: bold;
   font-size: 1rem;
